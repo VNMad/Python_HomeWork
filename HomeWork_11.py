@@ -38,7 +38,7 @@
 text = "I have 5 apples and 10 oranges, price is 0.5 each. Card number is ....3672."
 new_symbols = []
 for char in text.split():
-    if char.count('.') <= 1 and char.replace('.', '').isdigit():
+    if char.replace('.', '', 1).isdigit():
          char = str(float(char) * 10)
          #text = text.replace(char, str(char2))
     #new_symbols += [char]
@@ -46,18 +46,3 @@ for char in text.split():
 new_text = " ".join(new_symbols)
 print(new_text)
 
-# text = "I have 5 apples and 10 oranges, price is 0.5 each. Card number is ....3672."
-# new_symbols = []
-#
-# for char in text.split():
-#     if char.count('.') <= 1 and char.replace('.', '').isdigit():
-# #     #if char.isdigit() or char == '.':
-# #         #char2 = float(char) * 10
-# #         #print(char2)
-# #         #text = text.replace(char, str(char2))
-#         digit = str(float(char) * 10)
-#         new_symbols.append(digit)
-#     else:
-#         new_symbols.append(char)
-# new_text = " ".join(new_symbols)
-# print(new_text)
