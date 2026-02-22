@@ -35,9 +35,9 @@ checked = []
 
 for num in numbers:
     if num not in checked and numbers.count(num) > 1:
-        indexes = []
-        for index, item in enumerate(numbers):
+        list_index = []
+        for i, item in enumerate(numbers):
             if item == num:
-                indexes.append(index)
-        print(f"Индексы элемента {num}:", *indexes)
+                list_index.append(i)
+        print(f"Индексы элемента {num}:", *list_index)
         checked.append(num)
