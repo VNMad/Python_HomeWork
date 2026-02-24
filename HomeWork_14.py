@@ -3,10 +3,14 @@
 #____________________________________________________________________
 # strings = ["apple23", "ban1ana45", "12cherry", "grape3", "blue23berry"]
 # new_strings = []
-# for string in strings:
-#     if string.rstrip("0123456789").isalpha():
-#         new_strings.append(string)
-# print("Строки с цифрами только в конце: ", new_strings)
+#
+# for item in strings:
+#     i = 0
+#     while i < len(item) and item[i].isalpha():
+#         i += 1
+#     if i < len(item) and item[i:].isdigit():
+#         new_strings.append(item)
+# print("Строки с цифрами только в конце:", new_strings)
 
 #____________________________________________________________________
 #2. Удаление кратных
