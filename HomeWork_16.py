@@ -16,14 +16,13 @@ for i in range(len(string)):
     char = string[i]
     if char in '([{':
         stack.append(char)
-    elif char == ')' and len(stack) > 0 and stack[-1] == '(':
-        stack.pop()
-    elif char == ']' and len(stack) > 0 and stack[-1] == '[':
-        stack.pop()
-    elif char == '}' and len(stack) > 0 and stack[-1] == '{':
+    elif (char == ')' and len(stack) > 0 and stack[-1] == '('
+        or char == ']' and len(stack) > 0 and stack[-1] == '['
+        or char == '}' and len(stack) > 0 and stack[-1] == '{'):
         stack.pop()
     else:
         print("Валидны: False")
         break
 else:
     print("Валидны:, True")
+
