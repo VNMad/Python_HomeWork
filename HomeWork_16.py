@@ -12,17 +12,18 @@ print([[item, ('отлично' if item==5 else 'хорошо' if 3<=item<=4 els
 string = "([({}()){}])"
 stack = []
 
-for i in range(len(string)):
-    char = string[i]
+for char in string:
     if char in '([{':
         stack.append(char)
-    elif (char == ')' and len(stack) > 0 and stack[-1] == '('
-        or char == ']' and len(stack) > 0 and stack[-1] == '['
-        or char == '}' and len(stack) > 0 and stack[-1] == '{'):
+    elif ((char == ')' and stack and stack[-1] == '(') or
+          (char == ']' and stack and stack[-1] == '[') or
+          (char == '}' and stack and stack[-1] == '{')):
         stack.pop()
     else:
         print("Валидны: False")
         break
 else:
-    print("Валидны:, True")
-
+    if stack:
+        print("Валидны: False")
+    else:
+        print("Валидны: True")
