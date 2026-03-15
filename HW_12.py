@@ -19,5 +19,5 @@ data_list = [
     "Charlie 40 500.75"]
 
 for char in data_list:
-    every_part = char.split()
-    print(f"Имя: {every_part[0]:<10} | Возраст: {int(every_part[1]):>3} | Баланс: {float(every_part[2]):>10.2f}")
+    name, age, balance = char.split()
+    print(f"Имя: {name:<10} | Возраст: {int(age):>3} | Баланс: {float(balance):>10.2f}")

@@ -17,4 +17,7 @@ if set(dict1.items()).issubset(set(dict2.items())):
 else:
     print("Первый словарь НЕ является подмножеством второго.")
 
+#РаспакоУка
+# for key, value in dict1.items():
+#     print(key, value)
 

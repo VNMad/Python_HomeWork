@@ -21,8 +21,9 @@ res = {}
 for word in words:
     res.setdefault(word, {})
     for char in word:
-        res[word].setdefault(char, 0)
-        res[word][char] += 1
+        res[word].get(char, 0) + 1
+        #res[word].setdefault(char, 0)
+        #res[word][char] += 1
 print(res)
 
 #____________________________________________________________________

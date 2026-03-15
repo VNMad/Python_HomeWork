@@ -15,7 +15,7 @@ import string
 strings = ["apple23", "ban1ana45", "12cherry", "grape3", "blue23berry"]
 new_strings = []
 for item in strings:
-    if item.rstrip((string.digits)).isalpha():
+    if item.rstrip(string.digits).isalpha():
         new_strings.append(item)
 print("Строки с цифрами только в конце: ", new_strings)
 
