@@ -27,8 +27,7 @@ def filter_numbers(filter_type, *args):
     elif filter_type == "odd":
         return [num for num in args if num % 2 != 0]
     else:
-        print("Некорректный фильтр")
-        return []
+        return "Некорректный фильтр"
 
 
 print(filter_numbers("even", 1, 2, 3, 4, 5, 6))
