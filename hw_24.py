@@ -23,7 +23,7 @@ from typing import Any
 def sum_num(data: list[Any]) -> int:
     summa = 0
     for i in data:
-        if type(i) == list:
+        if isinstance(i, list):
             summa += sum_num(i)
         else:
             summa += i
