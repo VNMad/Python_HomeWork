@@ -19,12 +19,11 @@ files = [(name, os.path.getsize(full_path)) for name, full_path in items if os.p
 def format_size(s):
     if s < 1024:
         return f"{s} B"
-    elif s < 1024**2:
+    if s < 1024**2:
         return f"{s // 1024} KB"
-    elif s < 1024**3:
+    if s < 1024**3:
         return f"{s // (1024**2)} MB"
-    else:
-        return f"{s // (1024**3)} GB"
+    return f"{s // (1024**3)} GB"
 
 
 print(f"Содержимое директории '{path}':\n")
@@ -63,7 +62,11 @@ if files:
         for file in files:
             try:
                 os.remove(file)
-            except Exception as e:
+            except FileNotFoundError:
+                print(f"Файл не найден: {file}")
+            except PermissionError:
+                print(f"Нет прав для удаления: {file}")
+            except OSError as e:
                 print(f"Ошибка при удалении {file}: {e}")
         print("Удаление завершено.")
     else:
