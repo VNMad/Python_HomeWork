@@ -7,35 +7,36 @@ print(os.getcwd())
 
 def filter_file(fn, kw):
     if not os.path.exists(fn):
-        print("Error: file not exists")
-        return
+        return "Error: file not exists"
 
     with open(fn, "r", encoding="utf-8") as f:
         matched_lines = [line for line in f if kw.lower() in line.lower()]
 
     if matched_lines:
         new_filename = f"{kw}_{fn}"
+
         with open(new_filename, "w", encoding="utf-8") as new_f:
             new_f.writelines(matched_lines)
-        print(f"Строки, содержащие '{kw}', сохранены в {new_filename}.")
+
+        return f"Строки, содержащие '{kw}', сохранены в {new_filename}."
     else:
-        print("No matches found. The file was not created.")
+        return "No matches found. The file was not created."
 
 
 filename = input("Введите имя файла для поиска: ")
 keyword = input("Введите ключевое слово: ")
 
-filter_file(filename, keyword)
+print(filter_file(filename, keyword))
 
 #____________________________________________________________________
-#2. Фильтрация по ключевому слову
+#2. Поиск и удаление дубликатов
 #____________________________________________________________________
 import os
 
+
 def remove_duplicates(fn):
     if not os.path.exists(fn):
-        print("Error: file not exists")
-        return
+        return "Error: file not exists"
 
     unique_lines = []
     seen = set()
@@ -51,8 +52,8 @@ def remove_duplicates(fn):
     with open(new_filename, "w", encoding="utf-8") as new_file:
         new_file.writelines(unique_lines)
 
-    print(f"Дубликаты удалены. Уникальные строки сохранены в {new_filename}.")
+    return f"Дубликаты удалены. Уникальные строки сохранены в {new_filename}."
 
 
 filename = input("Введите имя файла: ")
-remove_duplicates(filename)
+print(remove_duplicates(filename))
