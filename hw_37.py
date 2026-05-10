@@ -94,11 +94,7 @@ try:
     laptop = Laptop(tracks, movies)
 
     print(player.play_audio())
-    print()
-
     print(laptop.play_audio())
-    print()
-
     print(laptop.play_video())
 
 except AttributeError as error:
