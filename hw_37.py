@@ -40,7 +40,6 @@ try:
     )
 
     print(player.play_audio())
-    print()
     print(player.play_video())
 
 except AttributeError as error:
