@@ -62,7 +62,11 @@ import math
 
 class InvalidSizeError(ValueError):
     """
-    Raised when figure size is invalid.
+    Custom exception for invalid figure sizes.
+
+    Raised when:
+        - value is not int or float
+        - value is less than or equal to 0
     """
     pass
 
@@ -74,10 +78,16 @@ class Shape(ABC):
     Methods:
         area(): Returns area of shape.
     """
-
     @abstractmethod
     def area(self):
         pass
+
+    def _validate_value(self, name, value):
+
+        if not isinstance(value, (int, float)):
+            raise InvalidSizeError(f"{name} must be int or float: {value}")
+        if value <= 0:
+            raise InvalidSizeError(f"{name} must be more then 0: {value}")
 
 
 class Circle(Shape):
@@ -87,11 +97,17 @@ class Circle(Shape):
     Attributes:
         radius (int | float): Circle radius.
     """
-
     def __init__(self, radius):
-        if radius <= 0:
-            raise InvalidSizeError(f"Radius must be more then 0: {radius}")
         self.radius = radius
+
+    @property
+    def radius(self):
+        return self.__radius
+
+    @radius.setter
+    def radius(self, value):
+        self._validate_value("Radius", value)
+        self.__radius = value
 
     def area(self):
         return math.pi * self.radius ** 2
@@ -105,24 +121,35 @@ class Rectangle(Shape):
         width (int | float): Rectangle width.
         height (int | float): Rectangle height.
     """
-
     def __init__(self, width, height):
-        if width <= 0:
-            raise InvalidSizeError(f"Width must be more then 0: {width}")
-
-        if height <= 0:
-            raise InvalidSizeError(f"Height must be more then 0: {height}")
-
         self.width = width
         self.height = height
+
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        self._validate_value("Width", value)
+        self.__width = value
+
+    @property
+    def height(self):
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        self._validate_value("Height", value)
+        self.__height = value
 
     def area(self):
         return self.width * self.height
 
 
 try:
-    #shapes = [Circle(3), Rectangle(4, 5)]
-    shapes = [Circle(3), Rectangle(-4, 5)]
+    shapes = [Circle(3), Rectangle(-4, 5), Circle("abc")]
     print("\n".join(f"Area: {shape.area():.2f}" for shape in shapes))
-except InvalidSizeError as error:
-    print(f"Error: {error}")
+
+except InvalidSizeError as e:
+    print(f"Error: {e}")
